@@ -12,6 +12,6 @@ if __name__ == '__main__':
     parser.add_argument('-- ')
     parser.add_argument('-- ')
     parser.add_argument('-- ')
-    parser.add_argument('-- ')
+    parser.add_argument('-- ') assd 
 
     config = parser.parse_args()

@@ -1,6 +1,6 @@
 import os, fnmatch
-import numpy as np 
-import argparse
+#import numpy as np 
+#import argparse
 
 class fileWalker(object):
     def __init__(self, file_path, pdf_only=True):
@@ -12,7 +12,7 @@ class fileWalker(object):
         else:
             print("Reading (all file types) from: "+self.filePath)
     
-    def walk(self)
+    def walk(self):
         listOfFiles = os.listdir(self.filePath)
         
         pattern = '*'
@@ -21,7 +21,7 @@ class fileWalker(object):
         
         print('=='*20)
         print('Walking...')    
-        for entry in self.listOfFiles:
+        for entry in listOfFiles:
             if fnmatch.fnmatch(entry, pattern):
                 print(entry)
                 self.fileNames.append(entry)

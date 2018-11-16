@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_GTA', type=int, default=4, required=True)
     parser.add_argument('--cross_checking', type=bool, default=True, required=True)
     parser.add_argument('--split_evenly', type=bool, default=True, help='Split the courseworks evenly across all n = num_GTA GTAs. Default is True. If false, please enter field "split_proportion".')     
-    parser.add_argument('--split_proportion', type=, default=None, help='Proportion of splitting work among n = num_GTAs. Leave as none if argument "--split_evenly  True".', )        
+    parser.add_argument('--split_proportion', type=, default=None, help='Proportion of splitting work among n = num_GTAs. Leave as none if argument "--split_evenly  True".')        
     parser.add_argument('-- ')
     parser.add_argument('-- ')
     parser.add_argument('-- ')

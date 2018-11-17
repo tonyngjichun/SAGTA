@@ -19,7 +19,6 @@ if __name__ == '__main__':
 
 
     args = parser.parse_args()
-
     # Trim or fill attribute: num_GTA list to match num_GTA
     if args.num_GTA > len(args.GTA_names):
         for i in range(0, args.num_GTA - len(args.GTA_names)):

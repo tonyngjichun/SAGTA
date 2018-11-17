@@ -1,5 +1,6 @@
 import os
 import numpy as np
+import inspect
 from load_files import fileWalker
 
 class GTA(object):
@@ -7,6 +8,20 @@ class GTA(object):
         self.name = gtaName
         self.ownList = []
         self.crossCheckList = []
+
+    # legacy bit
+    def getSignature(self, func):
+        self.sig = inspect.signature(func)
+
+    def assign(self, ownListNP: np.array):
+        self.ownList.extend(list(ownListNP))
+
+    def distribute(self, *others):
+        nOthers = len(others)
+        crossCheckChunksNP = np.array_split(np.array(self.ownList),nOthers)
+        for i, each in enumerate(others):
+            each.crossCheckList.extend(list(crossCheckChunksNP[i]))
+    
 
 def allocate(args):
     rawDownloadsWalker = fileWalker(args.file_path, args.pdf_only)
@@ -16,7 +31,13 @@ def allocate(args):
     if args.split_evenly:
         rawFileChunks = np.array_split(np.array(rawFileNames),args.num_GTA)
 
+    #Prepares dict of class objects:GTA
+    gtaDict = {gtaName: GTA(gtaName) for gtaName in args.GTA_names}
+
     for i, gtaName in enumerate(args.GTA_names):
-        #Create class:GTA object on the fly:
-        vars()[gtaName] = GTA(gtaName)
-        exec(gtaName+'.ownList.append(list(rawFileChunks[i]))')
+        gtaDict[gtaName].assign(rawFileChunks[i])
+        gtaDict[gtaName].distribute(*[gtaDict[others] for others in args.GTA_names if others != gtaName])
+        print(gtaName+'s own list:', gtaDict[gtaName].ownList)
+    
+    for i, gtaName in enumerate(args.GTA_names):
+        print(gtaName+'s cross-check list:', gtaDict[gtaName].crossCheckList)

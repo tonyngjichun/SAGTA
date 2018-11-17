@@ -14,18 +14,17 @@ class fileWalker(object):
     
     def walk(self):
         listOfFiles = os.listdir(self.filePath)
-        
         pattern = '*'
         if self.pdf_only:
             pattern += '.pdf'
         
-        print('=='*20)
+        print('=='*40)
         print('Walking...')    
         for entry in listOfFiles:
             if fnmatch.fnmatch(entry, pattern):
                 print(entry)
                 self.fileNames.append(entry)
-        print('=='*20)
+        print('=='*40)
         print("Directory walking complete. Filenames saved.")
         
         return self.fileNames

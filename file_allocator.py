@@ -9,7 +9,7 @@ class GTA(object):
         self.crossCheckList = []
 
 def allocate(args):
-    rawDownloadsWalker = fileWalker(args.file_path)
+    rawDownloadsWalker = fileWalker(args.file_path, args.pdf_only)
     rawFileNames = rawDownloadsWalker.walk()
 
     #Slice all raw file names evenly across n GTAs
@@ -20,4 +20,3 @@ def allocate(args):
         #Create class:GTA object on the fly:
         vars()[gtaName] = GTA(gtaName)
         exec(gtaName+'.ownList.append(list(rawFileChunks[i]))')
-

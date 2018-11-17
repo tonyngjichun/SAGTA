@@ -3,7 +3,7 @@ import os, fnmatch
 #import argparse
 
 class fileWalker(object):
-    def __init__(self, file_path, pdf_only=True):
+    def __init__(self, file_path, pdf_only):
         self.filePath = file_path
         self.pdf_only = pdf_only
         self.fileNames = []
@@ -22,9 +22,9 @@ class fileWalker(object):
         print('Walking...')    
         for entry in listOfFiles:
             if fnmatch.fnmatch(entry, pattern):
-                print(entry)
+                print('Entry: '+entry)
                 self.fileNames.append(entry)
         print('=='*40)
         print("Directory walking complete. Filenames saved.")
-        
-        return self.fileNames
+
+        return self.fileNames 

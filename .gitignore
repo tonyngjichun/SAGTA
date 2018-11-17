@@ -106,3 +106,4 @@ venv.bak/
 # vscode stuff
 *.code-workspace
 *.vscode
+launch.jason

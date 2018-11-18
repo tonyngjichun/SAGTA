@@ -5,7 +5,7 @@ import file_mkdir_cper
 
 def main(args):
     gtaDict = allocate(args)
-    file_mkdir_cper.writeTxt(gtaDict)
+    file_mkdir_cper.writeTxt(gtaDict,args.save_path)
 
 
 if __name__ == '__main__':
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     parser.add_argument('--GTA_names', type=str, nargs='+', default=['DA','MK','MJ','TN'], help='Names of GTAs in str arr form. Length of string array should be equal to num_GTA.\
                         If len(GTA_names) < n, integers starting from 1 would be automatically assigned. If len(GTA_names) > n, only the first n name would be assigned.')
     parser.add_argument('--pdf_only', action='store_true', default=False, help='Toggle if file loader only reads files ending with .pdf')
-
+    parser.add_argument('--save_path', type=str, default='./example')
     args = parser.parse_args()
 
     # Trim or fill attribute: num_GTA list to match num_GTA

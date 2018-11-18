@@ -1,6 +1,4 @@
 import os, fnmatch
-#import numpy as np 
-#import argparse
 
 class fileWalker(object):
     def __init__(self, file_path, pdf_only):

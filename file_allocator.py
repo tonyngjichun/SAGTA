@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import inspect
+import random
 from load_files import fileWalker
 
 class GTA(object):
@@ -16,7 +17,8 @@ class GTA(object):
     def assign(self, ownListNP: np.array):
         self.ownList.extend(list(ownListNP))
 
-    def distribute(self, *others):
+    def distribute(self, others):
+        #others = list(others)
         nOthers = len(others)
         crossCheckChunksNP = np.array_split(np.array(self.ownList),nOthers)
         for i, each in enumerate(others):
@@ -27,17 +29,26 @@ def allocate(args):
     rawDownloadsWalker = fileWalker(args.file_path, args.pdf_only)
     rawFileNames = rawDownloadsWalker.walk()
 
-    #Slice all raw file names evenly across n GTAs
+    # slice all raw file names evenly across n GTAs
     if args.split_evenly:
         rawFileChunks = np.array_split(np.array(rawFileNames),args.num_GTA)
 
-    #Prepares dict of class objects:GTA
+    # prepares dict of class objects:GTA
     gtaDict = {gtaName: GTA(gtaName) for gtaName in args.GTA_names}
 
     for i, gtaName in enumerate(args.GTA_names):
-        gtaDict[gtaName].assign(rawFileChunks[i])
-        gtaDict[gtaName].distribute(*[gtaDict[others] for others in args.GTA_names if others != gtaName])
-        print(gtaName+'s own list:', gtaDict[gtaName].ownList)
+        gtaDict[gtaName].assign(rawFileChunks[i])\
+
+        # for evenly spreading cross check list, queue = 'others'
+        if 'others' not in locals():
+            others = [gtaDict[name] for name in args.GTA_names if name != gtaName]
+        else:
+            others[others.index(gtaDict[gtaName])] = gtaDict[insertNameNext]
+        
+        gtaDict[gtaName].distribute(others)
+
+        # for next iteration
+        insertNameNext = gtaName # insert name back into queue
+        others.append(others.pop(0)) # shift queue by one index
     
-    for i, gtaName in enumerate(args.GTA_names):
-        print(gtaName+'s cross-check list:', gtaDict[gtaName].crossCheckList)
+    return gtaDict

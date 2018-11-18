@@ -1,14 +1,16 @@
 import numpy as np
 import argparse
 from file_allocator import allocate
+import file_mkdir_cper
 
 def main(args):
-    allocate(args)
+    gtaDict = allocate(args)
+    file_mkdir_cper.writeTxt(gtaDict)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--file_path', type=str, default='../RawDownloads')
+    parser.add_argument('--file_path', type=str, default='./test')
     parser.add_argument('-n', '--num_GTA', type=int, default=4)
     parser.add_argument('--cross_checking', type=bool, default=True)
     parser.add_argument('--split_evenly', type=bool, default=True, help='Split the courseworks evenly across all n GTAs. Default is True. If false, please enter field "split_proportion".')     
@@ -17,8 +19,8 @@ if __name__ == '__main__':
                         If len(GTA_names) < n, integers starting from 1 would be automatically assigned. If len(GTA_names) > n, only the first n name would be assigned.')
     parser.add_argument('--pdf_only', action='store_true', default=False, help='Toggle if file loader only reads files ending with .pdf')
 
-
     args = parser.parse_args()
+
     # Trim or fill attribute: num_GTA list to match num_GTA
     if args.num_GTA > len(args.GTA_names):
         for i in range(0, args.num_GTA - len(args.GTA_names)):

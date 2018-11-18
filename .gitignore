@@ -107,3 +107,7 @@ venv.bak/
 *.code-workspace
 *.vscode
 launch.jason
+
+# ds_store
+*.ds_store
+*.DS_Store

@@ -5,7 +5,7 @@ import file_mkdir_cper
 
 def main(args):
     gtaDict = allocate(args)
-    file_mkdir_cper.writeTxt(gtaDict,args.save_path)
+    file_mkdir_cper.writeTxt(gtaDict, args.save_path)
 
 
 if __name__ == '__main__':

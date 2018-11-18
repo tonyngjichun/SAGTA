@@ -1,6 +1,6 @@
 import os
 
-def writeTxt(gtaDict,save_path):
+def writeTxt(gtaDict, save_path):
     if not os.path.exists(save_path):
         os.mkdir(save_path)
 

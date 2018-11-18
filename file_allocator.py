@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import inspect
-import random
+from random import shuffle
 from load_files import fileWalker
 
 class GTA(object):
@@ -23,11 +23,12 @@ class GTA(object):
         crossCheckChunksNP = np.array_split(np.array(self.ownList),nOthers)
         for i, each in enumerate(others):
             each.crossCheckList.extend(list(crossCheckChunksNP[i]))
-    
+
 
 def allocate(args):
-    rawDownloadsWalker = fileWalker(args.file_path, args.pdf_only)
+    rawDownloadsWalker = fileWalker(args.file_path, args.save_path, args.pdf_only)
     rawFileNames = rawDownloadsWalker.walk()
+    shuffle(rawFileNames)
 
     # slice all raw file names evenly across n GTAs
     if args.split_evenly:
@@ -37,7 +38,7 @@ def allocate(args):
     gtaDict = {gtaName: GTA(gtaName) for gtaName in args.GTA_names}
 
     for i, gtaName in enumerate(args.GTA_names):
-        gtaDict[gtaName].assign(rawFileChunks[i])\
+        gtaDict[gtaName].assign(rawFileChunks[i])
 
         # for evenly spreading cross check list, queue = 'others'
         if 'others' not in locals():

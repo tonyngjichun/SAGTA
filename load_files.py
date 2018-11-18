@@ -1,8 +1,9 @@
 import os, fnmatch
 
 class fileWalker(object):
-    def __init__(self, file_path, pdf_only):
+    def __init__(self, file_path, save_path, pdf_only):
         self.filePath = file_path
+        self.savePath = save_path
         self.pdf_only = pdf_only
         self.fileNames = []
         if self.pdf_only:
@@ -22,7 +23,17 @@ class fileWalker(object):
             if fnmatch.fnmatch(entry, pattern):
                 print('Entry: '+entry)
                 self.fileNames.append(entry)
+                
         print('=='*40)
         print("Directory walking complete. Filenames saved.")
+        
+        if not os.path.exists(self.savePath):
+            os.mkdir(self.savePath)
+
+        self.fileNames.sort()
+        f = open(self.savePath + '/' + 'list_all.txt', 'w+')
+        for fileName in self.fileNames:
+            f.write(fileName + '\n')
+        f.close()
 
         return self.fileNames 

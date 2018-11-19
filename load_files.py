@@ -35,7 +35,7 @@ class fileWalker(object):
         f2 = open(self.savePath + '/' + 'allIDs.txt', 'w+')
         for fileName in self.fileNames:
             f1.write(fileName + '\n')
-            p = re.compile('[a-z]{2,3}\d{2,4}')
+            p = re.compile('[a-z]{2,3}\d{2,5}')
             print(p.findall(fileName)[0])
             f2.write(p.findall(fileName)[0] + '\n')
         f1.close()

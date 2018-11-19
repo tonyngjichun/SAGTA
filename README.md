@@ -8,8 +8,8 @@ This is when SAGTA a.k.a. **S**pread **A**mong the **GTA**s comes into rescue. S
 - [x] Copying and distributing files automatically to target directory 
 - [x] Regex matches that supports filtering out student IDs from raw-downloaded filenames (support for IC's BlackBoard Learn naming routines only)
 - [x] Toggle for looking at pdf files only
-- [] Uneven distribution of workload among several GTAs
-- [] Automatic spreadsheet generation
+- [ ] Uneven distribution of workload among several GTAs
+- [ ] Automatic spreadsheet generation
 
 ## Install
 No installation needed. Tested on:

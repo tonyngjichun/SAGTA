@@ -1,4 +1,4 @@
-import os, fnmatch
+import os, re, fnmatch
 
 class fileWalker(object):
     def __init__(self, file_path, save_path, pdf_only):
@@ -31,9 +31,13 @@ class fileWalker(object):
             os.mkdir(self.savePath)
 
         self.fileNames.sort()
-        f = open(self.savePath + '/' + 'list_all.txt', 'w+')
+        f1 = open(self.savePath + '/' + 'list_all.txt', 'w+')
+        f2 = open(self.savePath + '/' + 'allIDs.txt', 'w+')
         for fileName in self.fileNames:
-            f.write(fileName + '\n')
-        f.close()
-
-        return self.fileNames 
+            f1.write(fileName + '\n')
+            p = re.compile('[a-z]{2,3}\d{2,4}')
+            print(p.findall(fileName)[0])
+            f2.write(p.findall(fileName)[0] + '\n')
+        f1.close()
+        f2.close()
+        return self.fileNames

@@ -25,8 +25,10 @@ To see the details of each argument parsed. For example:
 ```
 python main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example'
 ```
-yields the results seen in the `example` folder. Inputting
+yields the results seen in the `example` folder.
+
+Inputting
 ```
 python main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example' --pdf_only
 ```
-yields empty folders and text files because the extra `--pdf_only` argument toggles the script to look at pdf files with file prefixes ending with `.pdf' only.
+yields empty folders and text files because the extra `--pdf_only` argument toggles the script to look at pdf files with file extension `.pdf' only.

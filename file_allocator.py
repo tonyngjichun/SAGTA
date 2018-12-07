@@ -26,7 +26,7 @@ class GTA(object):
 
 
 def allocate(args):
-    rawDownloadsWalker = fileWalker(args.file_path, args.save_path, args.pdf_only)
+    rawDownloadsWalker = fileWalker(args.file_path, args.save_path, args.pdf_only, args.imperial_id)
     rawFileNames = rawDownloadsWalker.walk()
     shuffle(rawFileNames)
 

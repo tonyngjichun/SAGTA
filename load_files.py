@@ -1,11 +1,13 @@
 import os, re, fnmatch
 
 class fileWalker(object):
-    def __init__(self, file_path, save_path, pdf_only):
+    def __init__(self, file_path, save_path, pdf_only, imperial_id):
         self.filePath = file_path
         self.savePath = save_path
         self.pdf_only = pdf_only
         self.fileNames = []
+        self.imperial_id = imperial_id
+
         if self.pdf_only:
             print("Reading (pdf files only) from: "+self.filePath)
         else:
@@ -31,13 +33,13 @@ class fileWalker(object):
             os.mkdir(self.savePath)
 
         self.fileNames.sort()
-        f1 = open(self.savePath + '/' + 'list_all.txt', 'w+')
-        f2 = open(self.savePath + '/' + 'allIDs.txt', 'w+')
-        for fileName in self.fileNames:
-            f1.write(fileName + '\n')
-            p = re.compile('[a-z]{2,3}\d{2,5}')
-            print(p.findall(fileName)[0])
-            f2.write(p.findall(fileName)[0] + '\n')
-        f1.close()
-        f2.close()
+        with open(self.savePath + '/' + 'list_all.txt', 'w+') as f1:
+            for fileName in self.fileNames:
+                f1.write(fileName + '\n')
+                if self.imperial_id:
+                    with open(self.savePath + '/' + 'all_IDs.txt', 'w+') as f2:
+                        p = re.compile('[a-z]{2,3}\d{2,5}')
+                        print(p.findall(fileName)[0])
+                        f2.write(p.findall(fileName)[0] + '\n')
+
         return self.fileNames

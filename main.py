@@ -20,6 +20,7 @@ if __name__ == '__main__':
                         If len(GTA_names) < n, integers starting from 1 would be automatically assigned. If len(GTA_names) > n, only the first n name would be assigned.')
     parser.add_argument('--pdf_only', action='store_true', default=False, help='Toggle if file loader only reads files ending with .pdf')
     parser.add_argument('--save_path', type=str, default='./example')
+    parser.add_argument('--imperial_id', action='store_true', default=False)
     args = parser.parse_args()
 
     # Trim or fill attribute: num_GTA list to match num_GTA

@@ -1,10 +1,10 @@
-test copy 10.rtf
-test copy 13.rtf
-test copy 16.rtf
 test copy 17.rtf
-test copy 2.rtf
+test copy 21.rtf
 test copy 25.rtf
-test copy 28.rtf
+test copy 26.rtf
+test copy 27.rtf
 test copy 32.rtf
-test copy 37.rtf
+test copy 34.rtf
+test copy 35.rtf
 test copy 39.rtf
+test copy 6.rtf

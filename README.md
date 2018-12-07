@@ -17,7 +17,7 @@ No installation needed. Tested on:
 * NumPy 1.15.1
 
 ## Run
-Open terminal and type `python main.py -h`to see the guidelines for parsing arguments. For example:
+Open terminal and type `python3 main.py -h`to see the guidelines for parsing arguments. For example:
 ```
 python3 main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example'
 ```

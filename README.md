@@ -19,12 +19,12 @@ No installation needed. Tested on:
 ## Run
 Open terminal and type `python main.py -h`to see the guidelines for parsing arguments. For example:
 ```
-python main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example'
+python3 main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example'
 ```
 yields the results seen in the `example` folder.
 
 Inputting
 ```
-python main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example' --pdf_only
+python3 main.py --file_path './test' -n 4 --GTA_names 'Homer' 'Simpson' 'Peter' 'Griffin' --save_path './example' --pdf_only
 ```
 yields empty folders and text files because the extra `--pdf_only` argument toggles the script to look at pdf files with file extension `.pdf' only.
